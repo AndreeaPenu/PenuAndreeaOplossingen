@@ -25,6 +25,23 @@
 							  "afbeeldingBeschrijving" => "auto"),
 
 	);
+
+
+
+	$isValid=false;
+	$notValid=false;
+
+
+	if (array_key_exists('id',$_GET)){
+    	$id= $_GET['id'];
+	 	if (array_key_exists($id,$artikels)){
+   			$artikels = array($artikels[$id]);
+   			$isValid = true;
+  		}else{
+   			$notValid = true;
+  		} 
+	}
+
 ?>
 
 
@@ -46,6 +63,17 @@
 		width:300px;
 		display:inline-block;
 		background-color:gray;
+		float:left;
+	}
+
+
+	.single{
+		float:right;
+	}
+
+	.multiple{
+		float:left;
+
 	}
 </style>
 
@@ -56,17 +84,35 @@
 	</head>
 	<body>
 
-
+<?php if(!$notValid):?>
 		<div class="kolom">
-			<?php foreach($artikels as $id => $artikel){ ?>
-				<h1><?php echo $artikel['title']; ?></h1>
-				<p><?php echo $artikel['datum']; ?></p>
-				<img src="img/<?php echo $artikel['afbeelding'] ?>" alt="<?php echo $artikel['afbeeldingBeschrijving']?>">
-				<p><?php echo $artikel['inhoud']; ?></p>
-				<a href="index.php?id=0"> <p> Lees meer </p></a>
-			<?php
-			}
-			?>
+			<?php foreach($artikels as $id => $artikel): ?>
+
+				<article class="<?php echo (!$isValid)?'multiple':'single';?>">
+
+					<h1><?php echo $artikel['title']; ?></h1>
+					<p><?php echo $artikel['datum']; ?></p>
+
+
+
+					<img src="img/<?php echo $artikel['afbeelding'] ?>" alt="<?php echo $artikel['afbeeldingBeschrijving']?>">
+					
+
+
+
+					
+					<p><?php echo $artikel['inhoud']; ?></p>
+
+
+					<?php if ( !$isValid ): ?>
+						<a href="opdracht-get.php?id=<?php echo $id ?>">Lees meer</a>
+					<?php endif ?>
+
+					
+				
+				</article>
+
+			<?php endforeach ?>
 		</div>
 	</body>
 </html>
