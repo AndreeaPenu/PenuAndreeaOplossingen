@@ -2,6 +2,7 @@
 
 	$password="azerty";
 	$username="stijn";
+	$message="";
 
 
 
@@ -9,11 +10,11 @@
 			//ingegeven username en password moeten overeen komen met wat in de code staat
 		if ($_POST['username'] == $username && $_POST['password'] == $password )
 		{
-			echo "Dit is correct";
+			$message="welkom";
 		}
 		else
 		{
-			echo "De gegevens die u hebt ingevuld zijn niet correct";
+			$message="Er ging iets mis bij het inloggen, probeer opnieuw";
 		}
 	}
 
@@ -29,8 +30,14 @@
 
 </head>
 <body>
+	
+
+	<?php echo $message ?>
+	
 
 	<h1>Inloggen</h1>
+
+
 	<form action="opdracht-post.php" method="post">
 
 
