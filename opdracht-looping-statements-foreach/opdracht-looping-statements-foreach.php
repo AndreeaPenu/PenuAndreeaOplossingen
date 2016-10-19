@@ -12,6 +12,7 @@
 	foreach ($textChars as $char) {
     	if( $char < $aantal){
     		++$teller[$char];
+		}
 	}
 ?>
 
@@ -21,7 +22,7 @@
 	</head>
 	<body>
 		
-		<p><?php echo ($teller) ?></p>
+		<pre><?php var_dump ( $teller ) ?></pre>
 		
 	</body>
 </html>
