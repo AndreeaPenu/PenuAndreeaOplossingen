@@ -1,5 +1,22 @@
 <?php
 
+	$password="azerty";
+	$username="stijn";
+
+
+
+		if (isset($_POST['submit'])){
+			//ingegeven username en password moeten overeen komen met wat in de code staat
+		if ($_POST['username'] == $username && $_POST['password'] == $password )
+		{
+			echo "Dit is correct";
+		}
+		else
+		{
+			echo "De gegevens die u hebt ingevuld zijn niet correct";
+		}
+	}
+
 
 ?>
 
@@ -28,7 +45,7 @@
 				</li>
 			</ul>
 
-			<input type="submit" value="Submit Query">
+			<input type="submit" name="submit" value="Submit Query">
 
 </body>
 </html>
