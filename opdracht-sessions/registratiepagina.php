@@ -1,23 +1,19 @@
 <?php
 	session_start();
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-
-
+	<style>
+		input[type=text]:focus,input[type=number]:focus{
+			border:1px solid rgba(81, 203, 238, 1);
+		}
+	</style>
 </head>
 <body>
-
 		<h1>Deel1: registratiegegevens</h1>
-
-
 		<form action="adrespagina.php" method="post">
-
-
-		<ul>
+			<ul>
 				<li>
 					<label for="email">e-mail</label>
 					<input type="text" name="email" id="email" value="">
@@ -27,14 +23,7 @@
 					<input type="text" name="nickname" id="nickname" value="">
 				</li>
 			</ul>
-
 			<input type="submit" name="submit" value="Volgende">
-
 		</form>
-
-
-
 </body>
-
-
 </html>
