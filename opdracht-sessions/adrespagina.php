@@ -6,8 +6,10 @@
 
 
 	if (isset($_POST['submit'])) { 
-			$_SESSION['email'] = $_POST['email'];
-			$_SESSION['nickname'] = $_POST['nickname'];
+			$_SESSION['straat'] = $_POST['straat'];
+			$_SESSION['nummer'] = $_POST['nummer'];
+			$_SESSION['gemeente'] = $_POST['gemeente'];
+			$_SESSION['postcode'] = $_POST['postcode'];
 			
 	} 
 
@@ -27,15 +29,17 @@
 		<h2>Registratiegegevens</h2>
 
 		<ul>
-			<li><?php echo "e-mail: " . $_SESSION['email'] ?></li>
-			<li><?php echo "nickname: " . $_SESSION['nickname'] ?></li>
+			<li><?php echo "straat: " . $_SESSION['straat'] ?></li>
+			<li><?php echo "nummer: " . $_SESSION['nummer'] ?></li>
+			<li><?php echo "gemeente: " . $_SESSION['gemeente'] ?></li>
+			<li><?php echo "postcode: " . $_SESSION['postcode'] ?></li>
 		<ul>
 
 		<h2>Deel2: adres</h2>
 
 
 
-		<form action="adrespagina.php" method="post">
+		<form action="overzichtspagina.php" method="post">
 
 
 		<ul>
@@ -63,6 +67,8 @@
 			<input type="submit" name="submit" value="Volgende">
 
 		</form>
+
+		<a href="vernietig.php">Vernietig</a>
 
 </body>
 
