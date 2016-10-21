@@ -25,7 +25,7 @@
 		<h1>Deel1: registratiegegevens</h1>
 
 
-		<form action="opdracht-sessions.php" method="post">
+		<form action="adrespagina.php" method="post">
 
 
 		<ul>
@@ -43,7 +43,6 @@
 
 		</form>
 
-		
 
 
 </body>
