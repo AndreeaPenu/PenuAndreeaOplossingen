@@ -1,16 +1,5 @@
 <?php
-
 	session_start();
-
-	
-
-
-	if (isset($_POST['submit'])) { 
-			$_SESSION['email'] = $_POST['email'];
-			$_SESSION['nickname'] = $_POST['nickname'];
-			
-	} 
-
 ?>
 
 
@@ -31,11 +20,11 @@
 		<ul>
 				<li>
 					<label for="email">e-mail</label>
-					<input type="text" name="email" id="email">
+					<input type="text" name="email" id="email" value="">
 				</li>
 				<li>
 					<label for="nickname">nickname</label>
-					<input type="text" name="nickname" id="nickname">
+					<input type="text" name="nickname" id="nickname" value="">
 				</li>
 			</ul>
 

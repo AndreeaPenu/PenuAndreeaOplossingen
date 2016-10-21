@@ -2,16 +2,13 @@
 
 	session_start();
 
-	
-
 
 	if (isset($_POST['submit'])) { 
-			$_SESSION['straat'] = $_POST['straat'];
-			$_SESSION['nummer'] = $_POST['nummer'];
-			$_SESSION['gemeente'] = $_POST['gemeente'];
-			$_SESSION['postcode'] = $_POST['postcode'];
+			$_SESSION['email'] = $_POST['email'];
+			$_SESSION['nickname'] = $_POST['nickname'];
 			
 	} 
+
 
 ?>
 
@@ -29,10 +26,9 @@
 		<h2>Registratiegegevens</h2>
 
 		<ul>
-			<li><?php echo "straat: " . $_SESSION['straat'] ?></li>
-			<li><?php echo "nummer: " . $_SESSION['nummer'] ?></li>
-			<li><?php echo "gemeente: " . $_SESSION['gemeente'] ?></li>
-			<li><?php echo "postcode: " . $_SESSION['postcode'] ?></li>
+			<li><?php echo "e-mail: " . $_SESSION['email'] ?></li>
+			<li><?php echo "nickname: " . $_SESSION['nickname'] ?></li>
+
 		<ul>
 
 		<h2>Deel2: adres</h2>
@@ -45,22 +41,22 @@
 		<ul>
 				<li>
 					<label for="straat">straat</label>
-					<input type="text" name="straat" id="straat">
+					<input type="text" name="straat" id="straat" value="">
 				</li>
 
 				<li>
 					<label for="nummer">nummer</label>
-					<input type="number" name="nummer" id="nummer" value="0">
+					<input type="number" name="nummer" id="nummer" value="">
 				</li>
 
 				<li>
 					<label for="gemeente">gemeente</label>
-					<input type="text" name="gemeente" id="gemeente">
+					<input type="text" name="gemeente" id="gemeente" value="" autofocus>
 				</li>
 
 				<li>
 					<label for="postcode">postcode</label>
-					<input type="text" name="postcode" id="postcode">
+					<input type="text" name="postcode" id="postcode" value="">
 				</li>
 			</ul>
 
