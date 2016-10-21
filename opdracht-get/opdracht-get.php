@@ -45,7 +45,13 @@
 ?>
 
 
-<style>
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
 	body{
 		
 	}
@@ -76,11 +82,6 @@
 
 	}
 </style>
-
-
-<!DOCTYPE html>
-<html>
-	<head>
 	</head>
 	<body>
 
@@ -88,7 +89,7 @@
 		<div class="kolom">
 			<?php foreach($artikels as $id => $artikel): ?>
 
-				<article class="<?php echo (!$isValid)?'multiple':'single';?>">
+				<article class="<?php echo (!$isValid) ? 'multiple' : 'single' ?>">
 
 					<h1><?php echo $artikel['title']; ?></h1>
 					<p><?php echo $artikel['datum']; ?></p>
@@ -114,5 +115,6 @@
 
 			<?php endforeach ?>
 		</div>
+<?php endif ?>
 	</body>
 </html>

@@ -3,7 +3,7 @@
 	$password="azerty";
 	$username="stijn";
 	$message="";
-
+	$loggedIn = false;
 
 
 		if (isset($_POST['submit'])){
@@ -11,6 +11,7 @@
 		if ($_POST['username'] == $username && $_POST['password'] == $password )
 		{
 			$message="welkom";
+			$loggedIn = true;
 		}
 		else
 		{
@@ -38,6 +39,7 @@
 	<h1>Inloggen</h1>
 
 
+
 	<form action="opdracht-post.php" method="post">
 
 
@@ -53,6 +55,7 @@
 			</ul>
 
 			<input type="submit" name="submit" value="Submit Query">
+	</form>
 
 </body>
 </html>
