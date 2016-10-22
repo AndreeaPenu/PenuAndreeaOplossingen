@@ -14,7 +14,7 @@
 <body>
 		<h2>Registratiegegevens</h2>
 		<ul>
-			<li><?php echo "e-mail: " . $_SESSION['email'] ?> <a name="wijzig" href="registratiepagina.php"> Wijzig </a></li>
+			<li><?php echo "e-mail: " . $_SESSION['email'] ?> <a name="wijzig" href="registratiepagina.php" putFocusOn="email"> Wijzig </a></li>
 			<li><?php echo "nickname: " . $_SESSION['nickname'] ?> <a name="wijzig" href="registratiepagina.php"> Wijzig </a></li>
 			<li><?php echo "straat: " . $_SESSION['straat'] ?> <a name="wijzig" href="adrespagina.php"> Wijzig </a></li>
 			<li><?php echo "nummer: " . $_SESSION['nummer'] ?> <a name="wijzig" href="adrespagina.php"> Wijzig </a></li>
