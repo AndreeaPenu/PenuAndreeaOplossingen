@@ -25,8 +25,6 @@
 		input[type=text]:focus,input[type=number]:focus{
 			border:1px solid rgba(81, 203, 238, 1);
 		}
-
-		
 	</style>
 </head>
 <body>
