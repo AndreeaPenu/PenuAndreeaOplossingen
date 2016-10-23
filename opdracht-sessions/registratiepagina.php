@@ -1,5 +1,12 @@
 <?php
 	session_start();
+
+
+
+	if (isset($_POST['wijzig'])){
+		$id = $_GET['id'];
+	}
+
 ?>
 <!DOCTYPE html>
 <html>

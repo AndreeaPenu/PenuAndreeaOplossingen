@@ -1,15 +1,39 @@
+
 <?php
 	session_start();
+
+	$id = null;
+	$idVergelijk = null;
+
 	if (isset($_POST['submit'])) { 
 			$_SESSION['email'] = $_POST['email'];
 			$_SESSION['nickname'] = $_POST['nickname'];		
 	} 
+
+
+
+	if (isset($_POST['wijzig'])){
+		$id = $_GET['id'];
+
+		$idVergelijk = $_GET['id'];
+	}
+
+
+	
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<style>
 		input[type=text]:focus,input[type=number]:focus{
+			border:1px solid rgba(81, 203, 238, 1);
+		}
+
+		.autofocus{
 			border:1px solid rgba(81, 203, 238, 1);
 		}
 	</style>
@@ -25,19 +49,19 @@
 			<ul>
 				<li>
 					<label for="straat">straat</label>
-					<input type="text" name="straat" id="straat" value="">
+					<input type="text" name="straat" id="straat" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>">
 				</li>
 				<li>
 					<label for="nummer">nummer</label>
-					<input type="number" name="nummer" id="nummer" value="">
+					<input type="number" name="nummer" id="nummer" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>">
 				</li>
 				<li>
 					<label for="gemeente">gemeente</label>
-					<input type="text" name="gemeente" id="gemeente" value="">
+					<input type="text" name="gemeente" id="gemeente" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>">
 				</li>
 				<li>
 					<label for="postcode">postcode</label>
-					<input type="text" name="postcode" id="postcode" value="">
+					<input type="text" name="postcode" id="postcode" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>"> 
 				</li>
 			</ul>
 			<input type="submit" name="submit" value="Volgende">

@@ -1,5 +1,6 @@
 <?php
 
+	session_start();
 	$userInfo = file_get_contents("user.txt");
 	$userInfoParts = explode(",",$userInfo);
 
@@ -22,20 +23,14 @@
 				$valid = false;
 			}
 
-
-
-
-
+			
 	} 
-
-	
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 
 	<style>
-
 		.melding{
 			background-color:red;
 		}

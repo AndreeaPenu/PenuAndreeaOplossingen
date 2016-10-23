@@ -7,10 +7,6 @@
 			$_SESSION['postcode'] = $_POST['postcode'];	
 	} 
 
-	if (isset($_POST['wijzig'])){
-		$id = $_GET['id'];
-		$_SESSION[$id] = $_POST[$id];
-	}
 	
 ?>
 <!DOCTYPE html>
@@ -20,7 +16,7 @@
 <body>
 		<h2>Registratiegegevens</h2>
 		<ul>
-			<li><?php echo "e-mail: " . $_SESSION['email'] ?> <a name="wijzig" id="email" action="registratiepagina.php" method="post"> Wijzig </a></li>
+			<li><?php echo "e-mail: " . $_SESSION['email'] ?> <a name="wijzig" id="email" href="registratiepagina.php"> Wijzig </a></li>
 			<li><?php echo "nickname: " . $_SESSION['nickname'] ?> <a name="wijzig" id="nickname" href="registratiepagina.php"> Wijzig </a></li>
 			<li><?php echo "straat: " . $_SESSION['straat'] ?> <a name="wijzig" id="straat" href="adrespagina.php"> Wijzig </a></li>
 			<li><?php echo "nummer: " . $_SESSION['nummer'] ?> <a name="wijzig" id="nummer" href="adrespagina.php"> Wijzig </a></li>
