@@ -11,18 +11,11 @@
 	} 
 
 
-
 	if (isset($_POST['wijzig'])){
 		$id = $_GET['id'];
-
-		$idVergelijk = $_GET['id'];
 	}
-
-
 	
-
-
-
+	$idVergelijk = $_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -33,9 +26,7 @@
 			border:1px solid rgba(81, 203, 238, 1);
 		}
 
-		.autofocus{
-			border:1px solid rgba(81, 203, 238, 1);
-		}
+		
 	</style>
 </head>
 <body>
@@ -45,11 +36,12 @@
 			<li><?php echo "nickname: " . $_SESSION['nickname'] ?></li>
 		<ul>
 		<h2>Deel2: adres</h2>
+		<p><?php echo $id . $idVergelijk ?></p>
 		<form action="overzichtspagina.php" method="post">
 			<ul>
 				<li>
 					<label for="straat">straat</label>
-					<input type="text" name="straat" id="straat" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>">
+					<input type="text" name="straat" id="straat" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>" >
 				</li>
 				<li>
 					<label for="nummer">nummer</label>
@@ -57,7 +49,7 @@
 				</li>
 				<li>
 					<label for="gemeente">gemeente</label>
-					<input type="text" name="gemeente" id="gemeente" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>">
+					<input type=	"text" name="gemeente" id="gemeente" value="" "<?php echo ($id==$idVergelijk) ? 'autofocus' : '' ?>">
 				</li>
 				<li>
 					<label for="postcode">postcode</label>
