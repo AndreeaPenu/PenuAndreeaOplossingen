@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
+	$id=null;
 
-
-	if (isset($_POST['wijzig'])){
+	if (isset($_GET['id'])){
 		$id = $_GET['id'];
 	}
 
@@ -23,11 +23,11 @@
 			<ul>
 				<li>
 					<label for="email">e-mail</label>
-					<input type="text" name="email" id="email" value="">
+					<input type="text" name="email" id="email" value="" <?php echo ($id=="email") ? 'autofocus' : '' ?>>
 				</li>
 				<li>
 					<label for="nickname">nickname</label>
-					<input type="text" name="nickname" id="nickname" value="">
+					<input type="text" name="nickname" id="nickname" value=""  <?php echo ($id=="nickname") ? 'autofocus' : '' ?>>
 				</li>
 			</ul>
 			<input type="submit" name="submit" value="Volgende">
