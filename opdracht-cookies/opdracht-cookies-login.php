@@ -4,7 +4,6 @@
 	$userInfo = file_get_contents("user.txt");
 	$userInfoParts = explode(",",$userInfo);
 
-	$valid = null;
 	$melding=null;
 
 	if (isset($_POST['submit'])) { 
@@ -16,13 +15,10 @@
 
 			if(($_SESSION['gebruikersnaam'] == $userInfoParts[0]) && ($_SESSION['passwoord'] == $userInfoParts[1])){
 				setcookie('test','',time()+360);
-				$valid = true;
 				$melding = "";
 				header("location:opdracht-cookies-dashboard.php");
 			}else{
 				$melding = "Gebruikersnaam en/of passwoord niet correct. Probeer opnieuw";
-				$valid = false;
-
 			}
 
 			

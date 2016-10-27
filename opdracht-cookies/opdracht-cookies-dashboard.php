@@ -3,6 +3,7 @@
 
 		if (isset($_GET['uitloggen'])){
 			setcookie('test','',time()-360);
+			header("location:opdracht-cookies-login.php");
 		}
 ?>
 <!DOCTYPE html>
