@@ -18,9 +18,11 @@
 				setcookie('test','',time()+360);
 				$valid = true;
 				$melding = "";
+				header("location:opdracht-cookies-dashboard.php");
 			}else{
 				$melding = "Gebruikersnaam en/of passwoord niet correct. Probeer opnieuw";
 				$valid = false;
+
 			}
 
 			
@@ -43,11 +45,10 @@
 
 			<p class="<?php echo ($valid==true) ? '' : 'melding' ?>"> <?php echo $melding ?> </p>
 
-			 <?php if($valid == true) : ?> 
-					<form action="opdracht-cookies-dashboard.php" method="post"> 
-			  <?php else : ?> 
+			 
+			 
 			 		<form action="opdracht-cookies-login.php" method="post">	
-			  <?php endif; ?>
+			  
 			<ul>
 				<li>
 					<label for="gebruikersnaam">gebruikersnaam</label>
