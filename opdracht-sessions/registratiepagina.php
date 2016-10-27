@@ -7,6 +7,12 @@
 		$id = $_GET['id'];
 	}
 
+
+	//als deel1 bestaat
+	if(isset($_SESSION["deel1"])){
+		$email = $_SESSION["deel1"]["email"];
+		$nickname = $_SESSION["deel1"]["nickname"];
+	}
 	
 
 ?>
@@ -25,11 +31,11 @@
 			<ul>
 				<li>
 					<label for="email">e-mail</label>
-					<input type="text" name="email" id="email" value="" <?php echo ($id=="email") ? 'autofocus' : '' ?>>
+					<input type="text" name="email" id="email" value="<?=$email?>" <?php echo ($id=="email") ? 'autofocus' : '' ?>>
 				</li>
 				<li>
 					<label for="nickname">nickname</label>
-					<input type="text" name="nickname" id="nickname" value=""  <?php echo ($id=="nickname") ? 'autofocus' : '' ?>>
+					<input type="text" name="nickname" id="nickname" value="<?=$nickname?>"  <?php echo ($id=="nickname") ? 'autofocus' : '' ?>>
 				</li>
 			</ul>
 			<input type="submit" name="submit" value="Volgende">
