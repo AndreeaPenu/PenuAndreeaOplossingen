@@ -1,0 +1,17 @@
+<h1> Nieuws</h1>
+
+
+
+
+<?php foreach($artikels as $artikel): ?>
+
+<div id="titel">	<?= $artikel['title']; ?> 	</div>
+<div id="inhoud">	<?= $artikel['text']; ?> 	</div>
+<div id="tags"> 	<?= $artikel['tags'][0]; ?> </div>
+
+<?php endforeach; ?>
+
+
+
+
+

@@ -5,6 +5,7 @@
 	$userInfoParts = explode(",",$userInfo);
 
 	$melding=null;
+	$valid=false;
 
 	if (isset($_POST['submit'])) { 
 			$_SESSION['gebruikersnaam'] = $_POST['gebruikersnaam'];
@@ -17,12 +18,13 @@
 				setcookie('test','',time()+360);
 				$melding = "";
 				header("location:opdracht-cookies-dashboard.php");
+				$valid=true;
 			}else{
 				$melding = "Gebruikersnaam en/of passwoord niet correct. Probeer opnieuw";
-			}
-
-			
+				$valid=false;
+			}	
 	} 
+
 
 
 ?>

@@ -14,6 +14,8 @@
 		$nickname = $_SESSION["deel1"]["nickname"];
 	}
 	
+	$email = isset( $_SESSION['deel1']['email'] ) ? $_SESSION['deel1']['email'] : '';
+	
 
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,7 @@
 <?php
 	session_start();
 
-	$id=null;
+	$focus=false;
 
 	if (isset($_POST['submit'])) { 
 			$_SESSION['deel1']['email'] = $_POST['email']; //wanneer op submit geklikt steek email in session
@@ -31,7 +31,7 @@
 
 
 	if (isset($_GET['id'])){
-		$id = $_GET['id'];
+		$focus = $_GET['id'];
 	}
 	
 
@@ -59,19 +59,19 @@
 			<ul>
 				<li>
 					<label for="straat">straat</label>
-					<input type="text" name="straat" id="straat" value="<?=$straat?>" <?php echo ($id=="straat") ? 'autofocus' : '' ?>>
+					<input type="text" name="straat" id="straat" value="<?=$straat?>" <?= ($focus=="straat") ? 'autofocus' : '' ?>>
 				</li>
 				<li>
 					<label for="nummer">nummer</label>
-					<input type="number" name="nummer" id="nummer" value="<?=$nummer?>" <?php echo ($id=="nummer") ? 'autofocus' : '' ?>>
+					<input type="number" name="nummer" id="nummer" value="<?=$nummer?>" <?php echo ($focus=="nummer") ? 'autofocus' : '' ?>>
 				</li>
 				<li>
 					<label for="gemeente">gemeente</label>
-					<input type=	"text" name="gemeente" id="gemeente" value="<?=$gemeente?>" <?php echo ($id=="gemeente") ? 'autofocus' : '' ?>>
+					<input type=	"text" name="gemeente" id="gemeente" value="<?=$gemeente?>" <?php echo ($focus=="gemeente") ? 'autofocus' : '' ?>>
 				</li>
 				<li>
 					<label for="postcode">postcode</label>
-					<input type="text" name="postcode" id="postcode" value="<?=$postcode?>" <?php echo ($id=="postcode") ? 'autofocus' : '' ?>> 
+					<input type="text" name="postcode" id="postcode" value="<?=$postcode?>" <?php echo ($focus=="postcode") ? 'autofocus' : '' ?>> 
 				</li>
 			</ul>
 			<input type="submit" name="submit" value="Volgende">
