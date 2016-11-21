@@ -1,5 +1,5 @@
 <?php
-	require_once 'classes/Percent.php';
+	require_once '/classes/Percent.php';
 
 	$percent = new Percent(150,100);
 
@@ -9,6 +9,8 @@
 	$nominal = $percent->nominal;
 
 	//$percent->formatNumber();
+
+
 
 
 ?>
