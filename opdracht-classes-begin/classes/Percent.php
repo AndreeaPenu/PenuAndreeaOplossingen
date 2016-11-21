@@ -23,10 +23,10 @@
 			
 		}
 
-		public function formatNumber($number){
+	/*	public function formatNumber($number){
 			$formNumber = number_format($number,2,'.','');
 			return $formNumber;
-		}
+		} */
 
 
 
