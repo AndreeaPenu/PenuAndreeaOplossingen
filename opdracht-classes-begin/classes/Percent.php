@@ -7,26 +7,26 @@
 		public $nominal;
 
 		public function __construct($new,$unit){
-			$absolute = $new/$unit;
-			$relative = $absolute-1;
-			$hundred = $absolute*100;
-			$nominal;
+			$this->absolute = $new/$unit;
+			$this->relative = $this->absolute-1;
+			$this->hundred = $this->relative*100;
+			
 
-			if($absolute > 1){
-				$nominal = 'positive';
-			}else if($absolute==1){
-				$nominal = 'status-quo';
-			}else if($absolute < 1){
-				$nominal = 'negative';
+			if($this->absolute > 1){
+				$this->nominal = 'positive';
+			}else if($this->absolute==1){
+				$this->nominal = 'status-quo';
+			}else if($this->absolute < 1){
+				$this->nominal = 'negative';
 			}
 
 			
 		}
 
-	/*	public function formatNumber($number){
+		public function formatNumber($number){
 			$formNumber = number_format($number,2,'.','');
 			return $formNumber;
-		} */
+		} 
 
 
 

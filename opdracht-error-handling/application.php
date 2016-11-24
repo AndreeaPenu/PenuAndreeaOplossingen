@@ -1,6 +1,39 @@
 <?php
 
+$kortingscode = '';
 
+
+
+try
+	{
+		if ( isset ( $_POST['submit'] ) )
+		{
+			try
+			{
+				if ( $_POST['kortingscode'] == '' )
+				{
+					throw new Exception( 'SUBMIT-ERROR' );
+				}
+				else
+				{
+					$kortingscode	=	$_POST['kortingscode'];
+				}
+			}
+			catch( Exception $e )
+			{
+
+
+				throw new Exception( $e->getMessage() );
+			}
+			
+		}
+	}
+	catch ( Exception $e )
+	{
+		$message['type']	=	'error';
+		$message['text']	=	$e->getMessage();
+
+	}
 
 
 
