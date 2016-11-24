@@ -6,23 +6,26 @@
 		protected $health;
 
 		public function __construct($name,$gender,$health){
-
+			$this->name = $name;
+			$this->gender = $gender;
+			$this->health = $health;
 		}
 
 		public function getName(){
-			return $name;
+			return $this->name;
 		}
 
 		public function getGender(){
-			return $gender;
+			return $this->gender;
 		}
 
 		public function getHealth(){
-			return $health;
+			return $this->health;
 		}
 
 		public function changeHealth($healthPoints){
-			$newHealth = $health + $healthPoints;
+			$this->health += $healthPoints;
+			return $this->health;
 		}
 
 		public function doSpecialMove(){

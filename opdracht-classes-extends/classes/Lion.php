@@ -9,7 +9,7 @@
 		}
 
 		public function getSpecies(){
-			return $species;
+			return $this->species;
 		}
 
 		public function doSpecialMove(){
