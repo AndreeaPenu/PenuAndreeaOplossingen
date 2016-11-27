@@ -68,6 +68,7 @@
 		<table>
 			<thead>
 				<tr>
+					<th>#</th>
 					<th>Biernr PK</th>
 					<th>naam</th>
 					<th>brouwernr</th>
@@ -83,6 +84,19 @@
 			<tfoot>
 			</tfoot>
 			<tbody>
+
+				
+
+					<?php foreach ($fetchAssoc as $row): ?>
+						<tr> <td>#</td><td><?php echo $row['biernr'] ?></td><td> <?php echo $row['naam'] ?></td>
+							<td> <?php echo $row['brouwernr'] ?></td> <td> <?php echo $row['soortnr'] ?></td>
+							<td> <?php echo $row['alcohol'] ?></td> <td> <?php echo $row['brnaam'] ?></td>
+							<td> <?php echo $row['adres'] ?></td> <td> <?php echo $row['postcode'] ?></td>
+							<td> <?php echo $row['gemeente'] ?></td><td> <?php echo $row['omzet'] ?></td>
+						</tr>
+					<?php endforeach ?>
+
+				
 
 			</tbody>
 			
