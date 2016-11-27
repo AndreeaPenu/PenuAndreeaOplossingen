@@ -1,6 +1,10 @@
 <?php
 
 $kortingscode = '';
+$message	=	false;	
+
+$messageCode;
+$createMessage =false;
 
 
 
@@ -23,7 +27,16 @@ try
 			{
 
 
-				throw new Exception( $e->getMessage() );
+
+				$message['type']	=	'error';
+				$message['text']	=	$e->getMessage();
+
+				$date	=	'[' . date( 'H:i:s', time() ).']';
+
+				$errorString	=	$date . ' ' . $message['text'] . "\n\r";
+
+				file_put_contents( 'log.txt', $errorString, FILE_APPEND );
+
 			}
 			
 		}
@@ -49,8 +62,12 @@ try
 
 <body>
 	<h2>Geef uw kortingscode op</h2>
-	<label for="kortingscode">Kortingscode</label>
-	<input id="kortingscode" name="kortingscode" type="text">
-	<input type="submit"></input>
+
+
+	<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+		<label for="kortingscode">Kortingscode</label>
+		<input id="kortingscode" name="kortingscode" type="text">
+		<input type="submit" name="submit"></input>
+	</form>
 </body>
 </html>
