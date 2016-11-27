@@ -43,8 +43,8 @@ try
 		$omzet = $_POST['omzet'];
 
 	if(isset($_POST['submit'])){
-		$queryInsert = ('INSERT INTO brouwer (brouwernaam, adres, postcode, gemeente, omzet)
-						VALUES ('$bouwernaam','$adres','$postcode','$gemeente','$omzet'); 
+		$queryInsert = ('INSERT INTO brouwers (brouwernaam, adres, postcode, gemeente, omzet)
+						VALUES ('$bouwernaam','$adres','$postcode','$gemeente','$omzet')
 
 
 						');
