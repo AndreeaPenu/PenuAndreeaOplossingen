@@ -30,6 +30,24 @@
 		}
 
 
+		$fetchedResult = array();
+		while ( $statement -> fetch() )
+		{
+			$arrayDump 				= 	array();
+
+			// Associatief
+			$arrayDump['biernr'] 		= 	$biernr;  
+			$arrayDump['naam'] 			= 	$naam;  
+			$arrayDump['brouwernr'] 	= 	$brouwernr;  
+			$arrayDump['soortnr'] 		= 	$soortnr;
+			$arrayDump['alcohol'] 		= 	$alcohol;  
+
+			$fetchedResult[] 		= 	$arrayDump; 
+		}
+
+
+
+
 
 	$brouwernr = $_POST['brouwernr'];
        
@@ -76,27 +94,29 @@
 			<p>Deze brouwerij werd niet gevonden.</p>
 		<?php endif?>
 
-		<form action="index.php" method="POST">
-		  Brouwernaam<br>
-		  <input type="text" name="brnaam" value="">
-		  <br>
-		  adres<br>
-		  <input type="text" name="adres" value="">
-		  <br>
-		  postcode<br>
-		  <input type="text" name="postcode" value="">
-		  <br>
-		  gemeente<br>
-		  <input type="text" name="gemeente" value="">
-		  <br>
-		  omzet<br>
-		  <input type="text" name="omzet" value="">
+		<?php foreach ($fetchedResult as $row): ?>
 
-		  <br><br>
-		  <input type="submit" name="wijzigen" value="Submit query">
-		</form> 
+			<form action="index.php" method="POST">
+			  Brouwernaam<br>
+			  <input type="text" name="brnaam" value="<?php echo $row['brnaam'] ?>">
+			  <br>
+			  adres<br>
+			  <input type="text" name="adres" value="<?php echo $row['adres'] ?>">
+			  <br>
+			  postcode<br>
+			  <input type="text" name="postcode" value="<?php echo $row['postcode'] ?>">
+			  <br>
+			  gemeente<br>
+			  <input type="text" name="gemeente" value="<?php echo $row['gemeente'] ?>">
+			  <br>
+			  omzet<br>
+			  <input type="text" name="omzet" value="<?php echo $row['omzet'] ?>">
 
+			  <br><br>
+			  <input type="submit" name="wijzigen" value="Submit query">
+			</form> 
 
+		<?php endforeach ?>
 
 		<h1>Overzicht van de brouwers</h1>		
 
