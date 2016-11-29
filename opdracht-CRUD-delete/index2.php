@@ -35,23 +35,28 @@
            
 
 	if(isset($_POST['delete'])){
-		//$pressDelete = true;
+		$pressDelete = true;
 
-		 $queryDelete = "DELETE FROM brouwers 
-		 				 WHERE brouwernr = '$brouwernr'";
+		
+		if(isset($_POST['ja'])){
+			$queryDelete = "DELETE FROM brouwers 
+			 				WHERE brouwernr = '$brouwernr'";
+
+			$statement2 = $db->prepare($queryDelete);
+			$deleted = $statement2->execute();
+
+			if($deleted){
+				echo "De datarij werd goed verwijderd.";
+			}else{
+				echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
+			}
+		}
+
+		if(isset($_POST['nee'])){
+			$pressDelete = false;
+		}
+
 	}
-
-	$statement2 = $db->prepare($queryDelete);
-	$deleted = $statement2->execute();
-
-	if($deleted){
-		echo "De datarij werd goed verwijderd.";
-	}else{
-		echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
-	}
-
-
-
 
 ?>
 
@@ -70,6 +75,14 @@
 		<h1>Voorbeeld van database connectie - PDO</h1>		
 
 		<p><?php echo $messageContainer ?></p>
+
+
+
+		<?php if ( $pressDelete == true): ?>
+			<p>Bent u zeker dat u deze datarij wil verwijderen?</p>
+			<input type="submit" name="ja" value="Ja!"/>
+			<input type="submit" name="nee" value="Néééé!"/>
+		<?php endif?>
 
 
 
