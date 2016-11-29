@@ -37,18 +37,25 @@
 
 
 
-		$bouwernaam = mysql_escape_string($_POST['bouwernaam']);
-		$adres = $_POST['adres'];
-		$postcode = $_POST['postcode'];
-		$gemeente = $_POST['gemeente'];
-		$omzet = $_POST['omzet'];
-
-	if(isset($_POST['submit'])){
-		$queryInsert = ('DELETE FROM brouwers 
-						 WHERE
+		
 
 
-						');
+		$brouwernr = $_POST['brouwernr'];
+            
+           
+
+	if(isset($_POST['delete'])){
+		 $queryDelete = 'DELETE FROM brouwers WHERE brouwernr = $brouwernr' ;
+	}
+
+	$statement2 = $db->prepare($queryDelete);
+	$statement2->execute();
+
+	if($queryDelete){
+		echo "De datarij werd goed verwijderd.";
+	}else{
+		echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
+	}
 
 
 
@@ -97,7 +104,7 @@
 						<tr><td><?php echo $row['brouwernr'] ?></td><td> <?php echo $row['brnaam'] ?></td>
 							<td> <?php echo $row['adres'] ?></td> <td> <?php echo $row['postcode'] ?></td>
 							<td> <?php echo $row['gemeente'] ?></td> <td> <?php echo $row['omzet'] ?></td>
-							<td><input type="submit" name="delete" value="brouwernummer"><img src="icon-delete.png"></td>
+							<td><input type="submit" name="delete" value="<?php echo $row['brouwernr'] ?>"><img src="icon-delete.png"></td>
 						</tr>
 					<?php endforeach ?>
 

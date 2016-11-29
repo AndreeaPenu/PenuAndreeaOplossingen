@@ -36,22 +36,26 @@ try
 
 
 
-		$bouwernaam = mysql_escape_string($_POST['bouwernaam']);
+		$brnaam = $_POST['brnaam'];
 		$adres = $_POST['adres'];
 		$postcode = $_POST['postcode'];
 		$gemeente = $_POST['gemeente'];
 		$omzet = $_POST['omzet'];
 
 	if(isset($_POST['submit'])){
-		$queryInsert = ('INSERT INTO brouwers (brouwernaam, adres, postcode, gemeente, omzet)
-						VALUES ('$bouwernaam','$adres','$postcode','$gemeente','$omzet')
-
-
-						');
+		$queryInsert = "INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet)
+						VALUES ('$brnaam','$adres','$postcode','$gemeente','$omzet')";
 	}
 
 
+	$statement2 = $db->prepare($queryInsert);
+	$statement2->execute();
 
+	if($queryInsert){
+		echo "Brouwerij succesvol toegevoegd. Het unieke nummer van deze brouwerij is ". $db->lastInsertId();
+	}else{
+		echo "Er ging iets mis met het toevoegen. Probeer opnieuw.";
+	}
 ?>
 
 
@@ -73,7 +77,7 @@ try
 
 	<form action="index.php" method="POST">
 	  Brouwernaam<br>
-	  <input type="text" name="brouwernaam" value="">
+	  <input type="text" name="brnaam" value="">
 	  <br>
 	  adres<br>
 	  <input type="text" name="adres" value="">
