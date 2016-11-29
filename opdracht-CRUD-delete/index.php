@@ -1,6 +1,7 @@
 <?php
 
 	$messageContainer	=	'';
+	$pressDelete = false;
 
 	try
 	{
@@ -41,10 +42,11 @@
 
 
 		$brouwernr = $_POST['brouwernr'];
-            
+       
            
 
 	if(isset($_POST['delete'])){
+		//$pressDelete = true;
 		 $queryDelete = 'DELETE FROM brouwers WHERE brouwernr = $brouwernr' ;
 	}
 
@@ -79,6 +81,11 @@
 
 
 
+		<?php if ( $pressDelete == true): ?>
+			<p>Bent u zeker dat u deze datarij wil verwijderen?</p>
+			<input type="submit" name="ja" value="Ja!"/>
+			<input type="submit" name="nee" value="Néééé!"/>
+		<?php endif?>
 
 
 
@@ -98,7 +105,7 @@
 			</tfoot>
 			<tbody>
 
-				
+				<form action="index.php" method="POST">
 
 					<?php foreach ($fetchAssoc as $row): ?>
 						<tr><td><?php echo $row['brouwernr'] ?></td><td> <?php echo $row['brnaam'] ?></td>
@@ -108,7 +115,7 @@
 						</tr>
 					<?php endforeach ?>
 
-				
+				</form>
 
 			</tbody>
 			
