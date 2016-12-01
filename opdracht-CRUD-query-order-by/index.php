@@ -2,7 +2,8 @@
 
 $messageContainer	=	'';
 
-try{
+try
+{
 
 		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', 'root'); // Connectie maken
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';

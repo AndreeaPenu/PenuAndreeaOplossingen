@@ -27,8 +27,6 @@
 			
 			$brouwernr = $_GET['brouwernr'];
 
-		
-
 			$queryZoekBier = " SELECT bieren.naam
 						   	   FROM bieren
 						   	   INNER JOIN brouwers
@@ -90,10 +88,10 @@
 			<tfoot>
 			</tfoot>
 			<tbody>
-					<?php foreach ($fetchAssoc2 as $row): ?>
+					<?php foreach ($fetchAssoc2 as $row2): ?>
 						<tr> 
 							<td>#</td>
-							<td> <?php echo $row['brnaam'] ?></td>
+							<td> <?php echo $row2['brnaam'] ?></td>
 						</tr>
 					<?php endforeach ?>
 			</tbody>

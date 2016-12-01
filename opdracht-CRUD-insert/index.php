@@ -4,10 +4,8 @@ $messageContainer	=	'';
 
 try
 	{
-
 		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', 'root'); // Connectie maken
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';
-
 
 		$queryString = 	('	SELECT *
 							FROM bieren 
@@ -33,7 +31,6 @@ try
 			$queryInsert = "INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet)
 							VALUES (:brnaam,:adres,:postcode,:gemeente,:omzet)";
 		}
-
 
 		$statement2 = $db->prepare($queryInsert);
 		$statement2 ->bindValue(':brnaam',$brnaam);
@@ -64,7 +61,6 @@ try
     <meta charset="utf-8">
    
 </head>
-
 <body>
 
 	<p><?php echo $messageContainer ?></p>
@@ -86,12 +82,9 @@ try
 	  <br>
 	  omzet<br>
 	  <input type="text" name="omzet" value="">
-
 	  <br><br>
 	  <input type="submit" name="submit" value="Submit query">
 	</form> 
-
-	
-			
+		
 </body>
 </html>

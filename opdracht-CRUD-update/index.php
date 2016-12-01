@@ -12,7 +12,7 @@
 
 
 		$queryString = 	('	SELECT *
-						FROM brouwers 
+							FROM brouwers 
 						');
 
 		$statement = $db->prepare($queryString);
