@@ -10,7 +10,7 @@
 
 
 		$queryString = 	('	SELECT *
-						FROM brouwers 
+							FROM brouwers 
 						');
 
 		$statement = $db->prepare($queryString);
@@ -22,21 +22,17 @@
 				$fetchAssoc[]	=	$row;
 			}
 
-
-
 		$brouwernr = $_POST['brouwernr'];
-	       
-	           
 
 		if(isset($_POST['delete'])){
 			$pressDelete = true;
-
 			
 			if(isset($_POST['ja'])){
 				$queryDelete = "DELETE FROM brouwers 
-				 				WHERE brouwernr = '$brouwernr'";
+				 				WHERE brouwernr = :brouwernr";
 
 				$statement2 = $db->prepare($queryDelete);
+				$statement2->bindValue(':brouwernr',$brouwernr);
 				$deleted = $statement2->execute();
 
 				if($deleted){
@@ -51,17 +47,11 @@
 			}
 
 		}
-
-
 	}
 	catch ( PDOException $e )
 	{
 		$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
 	}
-
-
-
-
 ?>
 
 
@@ -71,25 +61,15 @@
     <meta charset="utf-8">
    
 </head>
-
 <body>
-
-	
-
 		<h1>Voorbeeld van database connectie - PDO</h1>		
-
 		<p><?php echo $messageContainer ?></p>
-
-
 
 		<?php if ( $pressDelete == true): ?>
 			<p>Bent u zeker dat u deze datarij wil verwijderen?</p>
 			<input type="submit" name="ja" value="Ja!"/>
 			<input type="submit" name="nee" value="Néééé!"/>
 		<?php endif?>
-
-
-
 
 		<table>
 			<thead>
@@ -118,9 +98,6 @@
 
 				</form>
 			</tbody>
-		</table>
-
-	
-			
+		</table>	
 </body>
 </html>

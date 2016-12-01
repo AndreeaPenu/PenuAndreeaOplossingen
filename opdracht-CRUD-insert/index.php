@@ -14,7 +14,6 @@ try
 						');
 
 		$statement = $db->prepare($queryString);
-
 		$statement->execute();
 		$fetchAssoc 	=	array(); 
 
@@ -23,22 +22,25 @@ try
 				$fetchAssoc[]	=	$row;
 			}
 
-
-
-
 			$brnaam = $_POST['brnaam'];
 			$adres = $_POST['adres'];
 			$postcode = $_POST['postcode'];
 			$gemeente = $_POST['gemeente'];
 			$omzet = $_POST['omzet'];
 
+
 		if(isset($_POST['submit'])){
 			$queryInsert = "INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet)
-							VALUES ('$brnaam','$adres','$postcode','$gemeente','$omzet')";
+							VALUES (:brnaam,:adres,:postcode,:gemeente,:omzet)";
 		}
 
 
 		$statement2 = $db->prepare($queryInsert);
+		$statement2 ->bindValue(':brnaam',$brnaam);
+		$statement2 ->bindValue(':adres',$adres);
+		$statement2 ->bindValue(':postcode',$postcode);
+		$statement2 ->bindValue(':gemeente',$gemeente);
+		$statement2 ->bindValue(':omzet',$omzet);
 		$statement2->execute();
 
 		if($queryInsert){
@@ -53,13 +55,7 @@ try
 		$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
 	}
 
-
-
-
 ?>
-
-
-
 
 
 <!doctype html>
@@ -71,7 +67,7 @@ try
 
 <body>
 
-	
+	<p><?php echo $messageContainer ?></p>
 	<h1>Voeg een brouwer toe</h1>
 
 

@@ -1,7 +1,7 @@
 <?php
 
 	$messageContainer	=	'';
-	$pressDelete = false;
+	
 
 	try
 	{
@@ -9,7 +9,7 @@
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';
 
 		$queryString = 	('	SELECT *
-						FROM brouwers 
+							FROM brouwers 
 						');
 
 		$statement = $db->prepare($queryString);
@@ -21,18 +21,15 @@
 				$fetchAssoc[]	=	$row;
 			}
 
-
-
-		$brouwernr = $_POST['brouwernr'];
-	       
-	           
+		$brouwernr = $_POST['brouwernr'];	    
 
 		if(isset($_POST['delete'])){
 			 $queryDelete = "DELETE FROM brouwers 
-			 				 WHERE brouwernr = '$brouwernr'";
+			 				 WHERE brouwernr = :brouwernr";
 		}
 
 		$statement2 = $db->prepare($queryDelete);
+		$statement2->bindValue(':brouwernr',$brouwernr);
 		$deleted = $statement2->execute();
 
 		if($deleted){
@@ -47,13 +44,6 @@
 		$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
 	}
 
-
-
-
-
-
-
-
 ?>
 
 
@@ -65,15 +55,8 @@
 </head>
 
 <body>
-
-	
-
 		<h1>Voorbeeld van database connectie - PDO</h1>		
-
 		<p><?php echo $messageContainer ?></p>
-
-
-
 
 		<table>
 			<thead>
@@ -103,8 +86,5 @@
 				</form>
 			</tbody>
 		</table>
-
-	
-			
 </body>
 </html>
