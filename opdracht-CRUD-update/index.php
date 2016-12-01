@@ -3,6 +3,7 @@
 	$messageContainer	=	'';
 	$pressDelete = false;
 	$gevonden = true;
+	$editing = false;
 
 	try
 	{
@@ -49,6 +50,61 @@
 				$pressDelete = false;
 			}
 		}
+
+
+
+		$brnaam = $_POST['brnaam'];
+		$adres = $_POST['adres'];
+		$postcode = $_POST['postcode'];
+		$gemeente = $_POST['gemeente'];
+		$omzet = $_POST['omzet'];
+
+		if(isset($_POST['edit'])){
+
+			$editing = true;
+
+			//haal gegevens op en input velden
+			$queryGegevens = "SELECT brouwernr
+							  FROM brouwers
+							  WHERE brouwernr = $brouwernr";
+			$statement4 = $db->prepare($queryGegevens);
+			$statement4->execute();
+
+
+
+			$fetchAssoc2 	=	array(); 
+
+			while ( $row2 = $statement4->fetch(PDO::FETCH_ASSOC) )
+				{
+					$fetchAssoc2[]	=	$row2;
+				}
+
+
+
+			if(isset($_POST['wijzigen'])){
+				$queryEdit = "INSERT INTO brouwers(brnaam,adres,postcode,gemeente,omzet)
+							  VALUES ('$brnaam','$adres','$postcode','$gemeente','$omzet') ";
+				$statement3 = $db->prepare($queryEdit);
+				$edited = $statement3->execute();
+
+				if($edited){
+					echo "Aanpassing succesvol doorgevoerd.";
+				}else{
+					echo "Aanpassing is niet gelukt. Probeer opnieuw of neem contact op met de systeembeheerder wanneer deze fout blijft aanhouden.";
+				}
+
+			}
+
+
+
+			
+
+			
+			
+		}
+
+
+
 	}
 	catch ( PDOException $e )
 	{
@@ -74,23 +130,23 @@
 			<p>Deze brouwerij werd niet gevonden.</p>
 		<?php endif?>
 
-		<?php foreach ($fetchAssoc as $row): ?>
+		<?php foreach ($fetchAssoc as $row2): ?>
 
 			<form action="index.php" method="POST">
 			  Brouwernaam<br>
-			  <input type="text" name="brnaam" value="<?php echo $row['brnaam']?>">
+			  <input type="text" name="brnaam" value="<?php echo $row2['brnaam']?>">
 			  <br>
 			  adres<br>
-			  <input type="text" name="adres" value="<?php echo $row['adres'] ?>">
+			  <input type="text" name="adres" value="<?php echo $row2['adres'] ?>">
 			  <br>
 			  postcode<br>
-			  <input type="text" name="postcode" value="<?php echo $row['postcode'] ?>">
+			  <input type="text" name="postcode" value="<?php echo $row2['postcode'] ?>">
 			  <br>
 			  gemeente<br>
-			  <input type="text" name="gemeente" value="<?php echo $row['gemeente'] ?>">
+			  <input type="text" name="gemeente" value="<?php echo $row2['gemeente'] ?>">
 			  <br>
 			  omzet<br>
-			  <input type="text" name="omzet" value="<?php echo $row['omzet'] ?>">
+			  <input type="text" name="omzet" value="<?php echo $row2['omzet'] ?>">
 			  <br><br>
 			  <input type="submit" name="wijzigen" value="Submit query">
 			</form> 
