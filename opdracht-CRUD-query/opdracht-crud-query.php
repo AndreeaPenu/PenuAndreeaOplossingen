@@ -56,11 +56,7 @@
 
 
 
-		<ul>
-			<?php foreach ($fetchAssoc as $row): ?>
-				<li><?php echo $row['naam'] ?>: <?php echo $row['alcohol'] ?> promille</li>
-			<?php endforeach ?>
-		</ul>
+
 
 
 

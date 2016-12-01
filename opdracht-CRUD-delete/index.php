@@ -7,6 +7,40 @@
 	{
 		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', 'root'); // Connectie maken
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';
+
+		$queryString = 	('	SELECT *
+						FROM brouwers 
+						');
+
+		$statement = $db->prepare($queryString);
+		$statement->execute();
+		$fetchAssoc 	=	array(); 
+
+		while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
+			{
+				$fetchAssoc[]	=	$row;
+			}
+
+
+
+		$brouwernr = $_POST['brouwernr'];
+	       
+	           
+
+		if(isset($_POST['delete'])){
+			 $queryDelete = "DELETE FROM brouwers 
+			 				 WHERE brouwernr = '$brouwernr'";
+		}
+
+		$statement2 = $db->prepare($queryDelete);
+		$deleted = $statement2->execute();
+
+		if($deleted){
+			echo "De datarij werd goed verwijderd.";
+		}else{
+			echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
+		}
+
 	}
 	catch ( PDOException $e )
 	{
@@ -15,40 +49,7 @@
 
 
 
-	$queryString = 	('	SELECT *
-						FROM brouwers 
-					');
 
-	$statement = $db->prepare($queryString);
-	$statement->execute();
-	$fetchAssoc 	=	array(); 
-
-	while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
-		{
-			$fetchAssoc[]	=	$row;
-		}
-
-
-
-	$brouwernr = $_POST['brouwernr'];
-       
-           
-
-	if(isset($_POST['delete'])){
-		//$pressDelete = true;
-
-		 $queryDelete = "DELETE FROM brouwers 
-		 				 WHERE brouwernr = '$brouwernr'";
-	}
-
-	$statement2 = $db->prepare($queryDelete);
-	$deleted = $statement2->execute();
-
-	if($deleted){
-		echo "De datarij werd goed verwijderd.";
-	}else{
-		echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
-	}
 
 
 

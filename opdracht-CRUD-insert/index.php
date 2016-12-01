@@ -9,7 +9,43 @@ try
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';
 
 
+		$queryString = 	('	SELECT *
+							FROM bieren 
+						');
 
+		$statement = $db->prepare($queryString);
+
+		$statement->execute();
+		$fetchAssoc 	=	array(); 
+
+		while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
+			{
+				$fetchAssoc[]	=	$row;
+			}
+
+
+
+
+			$brnaam = $_POST['brnaam'];
+			$adres = $_POST['adres'];
+			$postcode = $_POST['postcode'];
+			$gemeente = $_POST['gemeente'];
+			$omzet = $_POST['omzet'];
+
+		if(isset($_POST['submit'])){
+			$queryInsert = "INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet)
+							VALUES ('$brnaam','$adres','$postcode','$gemeente','$omzet')";
+		}
+
+
+		$statement2 = $db->prepare($queryInsert);
+		$statement2->execute();
+
+		if($queryInsert){
+			echo "Brouwerij succesvol toegevoegd. Het unieke nummer van deze brouwerij is ". $db->lastInsertId();
+		}else{
+			echo "Er ging iets mis met het toevoegen. Probeer opnieuw.";
+		}
 
 	}
 	catch ( PDOException $e )
@@ -19,43 +55,7 @@ try
 
 
 
-	$queryString = 	('	SELECT *
-						FROM bieren 
-					');
 
-	$statement = $db->prepare($queryString);
-
-	$statement->execute();
-	$fetchAssoc 	=	array(); 
-
-	while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
-		{
-			$fetchAssoc[]	=	$row;
-		}
-
-
-
-
-		$brnaam = $_POST['brnaam'];
-		$adres = $_POST['adres'];
-		$postcode = $_POST['postcode'];
-		$gemeente = $_POST['gemeente'];
-		$omzet = $_POST['omzet'];
-
-	if(isset($_POST['submit'])){
-		$queryInsert = "INSERT INTO brouwers (brnaam, adres, postcode, gemeente, omzet)
-						VALUES ('$brnaam','$adres','$postcode','$gemeente','$omzet')";
-	}
-
-
-	$statement2 = $db->prepare($queryInsert);
-	$statement2->execute();
-
-	if($queryInsert){
-		echo "Brouwerij succesvol toegevoegd. Het unieke nummer van deze brouwerij is ". $db->lastInsertId();
-	}else{
-		echo "Er ging iets mis met het toevoegen. Probeer opnieuw.";
-	}
 ?>
 
 

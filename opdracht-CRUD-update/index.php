@@ -8,85 +8,65 @@
 	{
 		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', 'root'); // Connectie maken
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';
+
+
+		$queryString = 	('	SELECT *
+						FROM brouwers 
+						');
+
+		$statement = $db->prepare($queryString);
+		$statement->execute();
+		$fetchAssoc 	=	array(); 
+
+		while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
+			{
+				$fetchAssoc[]	=	$row;
+			}
+
+
+
+
+		$brouwernr = $_POST['brouwernr'];
+	                  
+		if(isset($_POST['delete'])){
+			$pressDelete = true;
+			
+			if(isset($_POST['ja'])){
+				$queryDelete = "DELETE FROM brouwers 
+				 				WHERE brouwernr = '$brouwernr'";
+
+				$statement2 = $db->prepare($queryDelete);
+				$deleted = $statement2->execute();
+
+				if($deleted){
+					echo "De datarij werd goed verwijderd.";
+				}else{
+					echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
+				}
+			}
+
+			if(isset($_POST['nee'])){
+				$pressDelete = false;
+			}
+		}
 	}
 	catch ( PDOException $e )
 	{
 		$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
 	}
 
-
-
-	$queryString = 	('	SELECT *
-						FROM brouwers 
-					');
-
-	$statement = $db->prepare($queryString);
-	$statement->execute();
-	$fetchAssoc 	=	array(); 
-
-	while ( $row = $statement->fetch(PDO::FETCH_ASSOC) )
-		{
-			$fetchAssoc[]	=	$row;
-		}
-
-
-		$fetchedResult = array();
-		while ( $statement -> fetch() )
-		{
-			$arrayDump 				= 	array();
-
-			// Associatief
-			$arrayDump['biernr'] 		= 	$biernr;  
-			$arrayDump['naam'] 			= 	$naam;  
-			$arrayDump['brouwernr'] 	= 	$brouwernr;  
-			$arrayDump['soortnr'] 		= 	$soortnr;
-			$arrayDump['alcohol'] 		= 	$alcohol;  
-
-			$fetchedResult[] 		= 	$arrayDump; 
-		}
+	
 
 
 
-
-
-	$brouwernr = $_POST['brouwernr'];
-       
-           
-
-	if(isset($_POST['delete'])){
-		$pressDelete = true;
-
-		
-		if(isset($_POST['ja'])){
-			$queryDelete = "DELETE FROM brouwers 
-			 				WHERE brouwernr = '$brouwernr'";
-
-			$statement2 = $db->prepare($queryDelete);
-			$deleted = $statement2->execute();
-
-			if($deleted){
-				echo "De datarij werd goed verwijderd.";
-			}else{
-				echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
-			}
-		}
-
-		if(isset($_POST['nee'])){
-			$pressDelete = false;
-		}
-
-	}
 
 ?>
-
 
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-   
 </head>
-
 <body>
 
 		<h1>Brouwerij <!--<?php echo $brnaam ?>--> (# ID <!---<?php echo $brouwernr ?> -->) wijzigen</h1>
@@ -94,11 +74,11 @@
 			<p>Deze brouwerij werd niet gevonden.</p>
 		<?php endif?>
 
-		<?php foreach ($fetchedResult as $row): ?>
+		<?php foreach ($fetchAssoc as $row): ?>
 
 			<form action="index.php" method="POST">
 			  Brouwernaam<br>
-			  <input type="text" name="brnaam" value="<?php echo $row['brnaam'] ?>">
+			  <input type="text" name="brnaam" value="<?php echo $row['brnaam']?>">
 			  <br>
 			  adres<br>
 			  <input type="text" name="adres" value="<?php echo $row['adres'] ?>">
@@ -111,7 +91,6 @@
 			  <br>
 			  omzet<br>
 			  <input type="text" name="omzet" value="<?php echo $row['omzet'] ?>">
-
 			  <br><br>
 			  <input type="submit" name="wijzigen" value="Submit query">
 			</form> 
@@ -119,19 +98,13 @@
 		<?php endforeach ?>
 
 		<h1>Overzicht van de brouwers</h1>		
-
 		<p><?php echo $messageContainer ?></p>
-
-
 
 		<?php if ( $pressDelete == true): ?>
 			<p>Bent u zeker dat u deze datarij wil verwijderen?</p>
 			<input type="submit" name="ja" value="Ja!"/>
 			<input type="submit" name="nee" value="Néééé!"/>
 		<?php endif?>
-
-
-
 
 		<table>
 			<thead>
@@ -162,8 +135,6 @@
 				</form>
 			</tbody>
 		</table>
-
-	
-			
+				
 </body>
 </html>

@@ -9,17 +9,7 @@
 		$messageContainer	=	'Connectie dmv PDO geslaagd.';
 
 
-
-
-	}
-	catch ( PDOException $e )
-	{
-		$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
-	}
-
-
-
-	$queryString = 	('	SELECT distinct brouwers.brouwernr, brouwers.brnaam
+		$queryString = 	('	SELECT distinct brouwers.brouwernr, brouwers.brnaam
 						FROM bieren
 						INNER JOIN brouwers
 						ON bieren.brouwernr = brouwers.brouwernr
@@ -48,6 +38,17 @@
 						   	   WHERE bieren.brouwernr == $brNummer
 						 	');
 		}
+
+
+	}
+	catch ( PDOException $e )
+	{
+		$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
+	}
+
+
+
+	
 ?>
 
 
