@@ -23,10 +23,10 @@
 				$fetchAssoc[]	=	$row;
 			}
 
-		if(isset($_GET['brouwernr'])){
-			
-			$brouwernr = $_GET['brouwernr'];
 
+		$brouwernr = $_POST['brouwernr'];
+		if(isset($_POST['submit'])){
+			
 			$queryZoekBier = " SELECT bieren.naam
 						   	   FROM bieren
 						   	   INNER JOIN brouwers
@@ -39,9 +39,9 @@
 			$fetchAssoc2 	=	array(); 
 
 			while ( $row2 = $statement2->fetch(PDO::FETCH_ASSOC) )
-			{
+				{
 					$fetchAssoc2[]	=	$row2;
-			}
+				}
 
 		}
 
@@ -75,7 +75,7 @@
 			</ul>
 		</select> 
 
-		<input type="submit" value="Geef mij alle bieren van deze brouwerij">
+		<input type="submit" name="submit" value="Geef mij alle bieren van deze brouwerij">
 
 		</form>
 		<table>
@@ -91,7 +91,7 @@
 					<?php foreach ($fetchAssoc2 as $row2): ?>
 						<tr> 
 							<td>#</td>
-							<td> <?php echo $row2['brnaam'] ?></td>
+							<td> <?php echo $row2['naam'] ?></td>
 						</tr>
 					<?php endforeach ?>
 			</tbody>
