@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Registratieformulier</title>
 </head>
 <body>
 
@@ -10,7 +10,7 @@
 	<form action="registratie-process.php" method="">
 	<label id="email">e-mail</label>
 	</br>
-	<input type="text" name="email">
+	<input type="text" name="email" value="<?= $value ?>">
 	</br>
 	<label id="paswoord">paswoord</label>
 	</br>

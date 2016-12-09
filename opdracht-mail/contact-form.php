@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>contactformulier</title>
 </head>
 <body>
 
 
 	<form aciton="contact.php" action="POST">
-
 		<label for="email">E-mailadres</label>
 		</br>
 		<input type="text" name="email">
