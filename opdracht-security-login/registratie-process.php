@@ -1,9 +1,16 @@
 <?php
 
+	session_start();
 
 	$value="";
+
 	
+
+
+
+
 	if(isset($_POST["genereer"])){
+		$paswoord = $_SESSION["paswoord"]
 		generatePassword();
 	}
 
