@@ -21,13 +21,15 @@
 				$fetchAssoc[]	=	$row;
 			}
 
-		$brouwernr = $_POST['brouwernr'];	    
-
+		    
+		var_dump($_POST);
+		
 		if(isset($_POST['delete'])){
 			 $queryDelete = "DELETE FROM brouwers 
 			 				 WHERE brouwernr = :brouwernr";
-		}
 
+
+		$brouwernr = $_POST['delete'];
 		$statement2 = $db->prepare($queryDelete);
 		$statement2->bindValue(':brouwernr',$brouwernr);
 		$deleted = $statement2->execute();
@@ -37,6 +39,9 @@
 		}else{
 			echo "De datarij kon niet verwijderd worden. Probeer opnieuw.";
 		}
+		}
+
+		
 
 	}
 	catch ( PDOException $e )

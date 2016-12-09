@@ -24,6 +24,8 @@
 			}
 
 
+		var_dump($_POST);
+
 		$brouwernr = $_POST['brouwernr'];
 		if(isset($_POST['submit'])){
 			
@@ -67,12 +69,12 @@
 
 		<form action="opdracht-crud-query-deel2.php" method="POST">
 
-		 <select>
-	  		<ul>
+		 <select name="brouwernr">
+	  		
 				<?php foreach ($fetchAssoc as $row): ?>
-					<option value="<?php echo $row['brnaam'] ?>"><?php echo $row['brnaam'] ?></option>
+					<option value="<?php echo $row['brouwernr'] ?>"><?php echo $row['brnaam'] ?></option>
 				<?php endforeach ?>
-			</ul>
+			
 		</select> 
 
 		<input type="submit" name="submit" value="Geef mij alle bieren van deze brouwerij">
