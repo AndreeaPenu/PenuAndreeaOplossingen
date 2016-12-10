@@ -9,12 +9,12 @@
 	$value="";
 
 	
-	if(isset($_POST["registreren"])){
+	if(isset($_POST["registreer"])){
 		try{
 			$db = new PDO('mysql:host=localhost;dbname=phpoefening029', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); // Connectie maken
 		
 			$queryUser = 'SELECT * FROM users
-						WHERE username=:username
+						WHERE username = :username
 						AND password = :password';
 
 
@@ -40,7 +40,6 @@
 
 
 	if(isset($_POST["genereer"])){
-		$paswoord = $_SESSION["paswoord"];
 		generatePassword();
 	}
 
@@ -50,7 +49,7 @@
 	}
 
 
-	$paswoord = $_SESSION["paswoord"];
+	
 
 
 	
