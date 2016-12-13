@@ -1,23 +1,31 @@
 <?php
 	session_start();
+
+	$email="";
+	$paswoord="";
+
+	if(isset($_SESSION['submit'])){
+		$email = $_SESSION['submit']['email'];
+		$paswoord = $_SESSION['submit']['paswoord'];
+	}
 ?>
 
 
 <html>
 <head>
-	<title></title>
+	<title>Login</title>
 </head>
 <body>
 	<h1>Inloggen</h1>
 	<form action="login-process.php" method="post">
 		<label for="email">e-mail</label>
 	</br>
-		<input id="email" type="text" name="email">
+		<input id="email" type="text" name="<?=$email?>">
 	</br>
 	</br>
 		<label for="paswoord">paswoord</label>
 	</br>
-		<input id="paswoord" type="password" name="paswoord">
+		<input id="paswoord" type="password" name="<?=$paswoord?>">
 	</br>
 	</br>
 		<input type="submit" name="submit" value="Submit">
