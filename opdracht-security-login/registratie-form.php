@@ -1,6 +1,7 @@
 <?php
-$email = $_SESSION['email'];
-$gegenereerdPaswoord = $_SESSION['gegenereerdPaswoord'];
+	session_start();
+	$email = $_SESSION['email'];
+	$gegenereerdPaswoord = $_SESSION['gegenereerdPaswoord'];
 ?>
 
 <!DOCTYPE html>
