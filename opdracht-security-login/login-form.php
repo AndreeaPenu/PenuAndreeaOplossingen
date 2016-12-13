@@ -4,9 +4,9 @@
 	$email="";
 	$paswoord="";
 
-	if(isset($_SESSION['submit'])){
-		$email = $_SESSION['submit']['email'];
-		$paswoord = $_SESSION['submit']['paswoord'];
+	if(isset($_SESSION['inloggen'])){
+		$email = $_SESSION['inloggen']['email'];
+		$paswoord = $_SESSION['inloggen']['paswoord'];
 	}
 ?>
 

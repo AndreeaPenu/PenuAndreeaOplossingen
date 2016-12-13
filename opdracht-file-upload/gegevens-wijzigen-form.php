@@ -16,6 +16,7 @@
 
 	<form action="gegevens-bewerken.php" method="post" enctype="multipart/form-data">
 		<img src="img/profile.jpg">
+		</br>
 		<input type="file" name="file"><br><br>
 		<label for="email">e-mail</label>
 		<input id="email" type="text" name="email">
