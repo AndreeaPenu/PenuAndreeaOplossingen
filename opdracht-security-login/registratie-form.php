@@ -1,7 +1,10 @@
 <?php
 	session_start();
-	$email = $_SESSION['email'];
-	$gegenereerdPaswoord = $_SESSION['gegenereerdPaswoord'];
+
+	if(isset($_SESSION['registreer'])){
+		$email = $_SESSION['registreer']['email'];
+		$paswoord = $_SESSION['registreer']['paswoord'];
+	}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +23,7 @@
 	</br>
 	<label id="paswoord">paswoord</label>
 	</br>
-	<input type="text" name="paswoord" value="<?= $gegenereerdPaswoord ?>">
+	<input type="text" name="paswoord" value="<?= $paswoord ?>">
 	<input type="submit" name="genereer" value="Genereer een paswoord">
 	</br>
 	<input type="submit" name="registreer" value="Registreer">

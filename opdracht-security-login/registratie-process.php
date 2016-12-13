@@ -2,12 +2,20 @@
 
 	session_start();
 
-	$email = $_SESSION["email"];
-	$password = $_SESSION["password"];
+	
 
 	
 	if(isset($_POST["registreer"])){
 		try{
+
+			$email = $_SESSION["email"];
+			$password = $_SESSION["password"];
+
+			$_SESSION['registreer']['email'] = $email;
+			$_SESSION['registreer']['paswoord'] = $paswoord;
+
+
+
 			$db = new PDO('mysql:host=localhost;dbname=phpoefening029', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); // Connectie maken
 		
 			$queryUser = 'SELECT * FROM users
@@ -37,12 +45,13 @@
 
 
 	if(isset($_POST["genereer"])){
-		generatePassword();
+		$_SESSION['registreer']['email'] = $_POST['email'];
+		$_SESSION['registreer']['paswoord'] = generatePassword();
 	}
 
 
 	function generatePassword(){
-		return $_SESSION['gegenereerdPasswoord'] = 'Banaan123';
+		return 'Banaan123';
 	}
 
 
