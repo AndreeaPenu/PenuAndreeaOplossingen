@@ -1,4 +1,8 @@
 <?php
+	
+	session_start();
+	//of alles geset is
+	$fout = $_SESSION['error'];
 
 
 	$admin = "marzone.ap@gmail.com";

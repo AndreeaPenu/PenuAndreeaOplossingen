@@ -1,3 +1,10 @@
+<?php
+
+	session_start();
+	$fout = $_SESSION['error'];
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
