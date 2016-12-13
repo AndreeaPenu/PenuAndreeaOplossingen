@@ -5,9 +5,6 @@
 	$email = $_SESSION["email"];
 	$password = $_SESSION["password"];
 
-
-	$value="";
-
 	
 	if(isset($_POST["registreer"])){
 		try{
@@ -45,7 +42,7 @@
 
 
 	function generatePassword(){
-		return 'Banaan123';
+		return $_SESSION['gegenereerdPasswoord'] = 'Banaan123';
 	}
 
 
