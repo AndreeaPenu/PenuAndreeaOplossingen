@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	$fout = $_SESSION['error'];
+	//$fout = $_SESSION['error'];
 
 ?>
 
