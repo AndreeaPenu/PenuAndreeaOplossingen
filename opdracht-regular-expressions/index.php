@@ -1,6 +1,6 @@
 <?php
 
-	$bericht ="";
+	
 	$regex = $_POST['regex'];
 	$search = $_POST['str'];
 	$replace = '#';
@@ -13,14 +13,14 @@
 	}
 
 
-	//alle letters tussen a en d, en u en z.
-	//[a-d u-z][:alpha:]
+	//alle letters tussen a en d, en u en z. ook hoofdletters
+	//[a-du-zA-DU-Z]
 
 	//zowel colour als color 
 	//(color)|(colour)
 
 	//1 als duizendtal
-
+	//[1]\d{3}
 
 	//enkel en overblijven
 	//[^en]
@@ -39,7 +39,7 @@
 	<input id="regex" type="text" name="regex">
 
 	<label for="str">String</label>
-	<input style="submit" value="Submit">
-	<p><?php=$bericht?></p>
+	<input id="str" style="submit" value="Submit">
+	<p><?php=$regx?></p>
 </body>
 </html>
