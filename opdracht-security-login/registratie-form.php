@@ -1,10 +1,13 @@
 <?php
 	session_start();
 
+
 	if(isset($_SESSION['registreer'])){
 		$email = $_SESSION['registreer']['email'];
 		$paswoord = $_SESSION['registreer']['paswoord'];
 	}
+
+	var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +19,7 @@
 
 	<h1>Registreren</h1>
 
-	<form action="registratie-process.php" method="">
+	<form action="registratie-process.php" method="post">
 	<label id="email">e-mail</label>
 	</br>
 	<input type="text" name="email" value="<?= $email ?>">

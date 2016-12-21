@@ -2,8 +2,8 @@
 
 	session_start();
 
-	
 
+	
 	
 	if(isset($_POST["registreer"])){
 		try{
@@ -16,54 +16,56 @@
 
 
 			//check of email adres geldig is
-			if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			  //echo("$email is a valid email address");
+				$db = new PDO('mysql:host=localhost;dbname=opdracht-security-login', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); // Connectie maken
+			  	
+			  	$select = mysql_query("SELECT email FROM users 
+			  							WHERE email = :email");
 
-			  	$select = mysql_query("SELECT 'email' FROM 'users' WHERE 'email' = '".$_POST['email']."'") or exit(mysql_error());
-				
-			  	//check of email adres reeds gebruikt is
-				if(mysql_num_rows($select)){
-    				$_SESSION["errormsg"]="This email is already being used";
-    				header("Location: registratie-form.php");
-    			}
+			  	$statement = $db->prepare($select);
+			  	$statement->bindValue(':email',$email);
+			  	$exec=$statement->execute();
+			  	$row = $statement->fetch();
 
-    			//emailadres is geldig en komt niet voor in database
-    			//maak salt + hashed password aan
-    			$salt = uniqid(mt_rand(),true);
-    			$saltedPass = $salt + $paswoord;
-    			$password_hash=md5($saltedPass);
+			  	//als emailadres er niet in is
+			  	if($row==false){
+			  		$insert = mysql_query("INSERT INTO users(email,salt,hashed_password,last_login_time)
+			  								VALUES(:email,:salt,:password_hash,NOW())");
+			  		$statement2 = $db->prepare($insert);
 
+				  	//maak salt + hashed password aan
+	    			$salt = uniqid(mt_rand(),true);
+	    			$saltedPass = $paswoord+$salt;
+	    			$password_hash=md5($saltedPass);
 
-    			$db = new PDO('mysql:host=localhost;dbname=opdracht-security-login', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); // Connectie maken
-    			//insert user in database
-    			$qry='INSERT INTO users (email,salt,hashed_password,last_login_time)
-    				VALUES ("$email","$salt","password_hash","now()"); '
+	    			//values binden
+	    			$statement2->bindValue(':email',$email);
+	    			$statement2->bindValue(':salt',$salt);
+	    			$statement2->bindValue(':password',$hashed_password);
+	    			$exec2=$statement2->execute();
 
-    				if ($db->query($qry) === TRUE) {
-					    echo "New record created successfully";
-					    //cookie setten
-					  
-						$email_salt = (uniqid(mt_rand(),true))+$email;
-						$email_hash = md5($email_salt);  
-
+	    			if($exec2){
+	    				$email_salt = (uniqid(mt_rand(),true))+$email;
+						$email_hash = md5($email_salt); 
+						//cookie setten 
 						$cookie_name = "login";
 						$cookie_value = $email + ',' + $email_hash;
-					    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), ",");
+					    setcookie($cookie_name, $cookie_value, time() + (86400 * 30));
 					    header("Location: dashboard.php");
-					} else {
-					    echo "Error: " . $qry . "<br>" . $db->error;
-					}
-
-
-
+	    			}else{
+	    				$_SESSION['notification']="Er is iets mis gegaan.";
+	    				header("Location: registratie-form.php");
+	    			}
+	    			//als email adres al bestaat
+			  	}else{
+			  		$_SESSION['notification']="Dit email adres bestaat al";
+			  		header("Location: registratie-form.php");
+			  	}				
 			} else {
-			  echo("$email is not a valid email address");
-			  $_SESSION["errormsg"]="This email address is not a valid email address";
+			  $_SESSION['notification']="Dit is geen geldig email adres";
 			  header("Location: registratie-form.php");
 			}
-
-			
-
 
 		}catch(PDOException $e){
 			$messageContainer	=	'Er ging iets mis: ' . $e->getMessage();
@@ -73,15 +75,23 @@
 
 
 	if(isset($_POST["genereer"])){
+		
 		$_SESSION['registreer']['email'] = $_POST['email'];
 		$_SESSION['registreer']['paswoord'] = generatePassword();
+		header("Location: registratie-form.php");
 	}
 
 
 	function generatePassword(){
-		return 'Banaan123';
+		$characters = 'abcdefghijklmnopqrstuvwxyz0123456789_-/#&!?';
+		$string = '';
+ 		$max = strlen($characters) - 1;
+ 		$length=8;
+ 		for ($i = 0; $i < $length; $i++) {
+      		$string .= $characters[mt_rand(0, $max)];
+ 		}
+ 		return $string;
 	}
-
 
 	
 
