@@ -1,15 +1,18 @@
 <?php
 
-	
-	$regex = $_POST['regex'];
-	$search = $_POST['str'];
-	$replace = '#';
-	$regx =preg_replace($regex, $replace, $search);
+	$regex="";
+	$search="";
+	if(isset($_POST['submit'])){
+		$regex = $_POST['regex'];
+		$search = $_POST['str'];
+		$replace = '#';
+		$regx =preg_replace('/' . $regex . '/', $replace, $search);
 
-	if($regx != 0 ){
-			$bericht = 'Resultaat: '. 'nieuwe string';
-	}else{
-		$bericht = 'Er werd geen match gevonden.';
+		if($regx != 0 ){
+				$bericht = 'Resultaat: '. $regx .' nieuwe string';
+		}else{
+			$bericht = 'Er werd geen match gevonden.';
+		}
 	}
 
 
@@ -34,12 +37,19 @@
 <body>
 	<h1>RegEx tester</h1>
 
-
+<form action="index.php" method="Post">
 	<label for="regex">Regular expression</label>
-	<input id="regex" type="text" name="regex">
-
+	<input id="regex" type="text" name="regex" value="<?=$regex?>">
+	<br>
 	<label for="str">String</label>
-	<input id="str" style="submit" value="Submit">
-	<p><?php=$regx?></p>
+	<textarea name="str" id="str" value="<?=$search?>"></textarea>
+	<br>
+	<input type="submit" name="submit" value="Submit">
+
+
+	<p><?=$bericht?></p>
+</form>
+
+
 </body>
 </html>
