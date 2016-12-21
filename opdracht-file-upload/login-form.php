@@ -4,9 +4,9 @@
 	$email="";
 	$paswoord="";
 
-	if(isset($_SESSION['submit'])){
-		$email = $_SESSION['submit']['email'];
-		$paswoord = $_SESSION['submit']['paswoord'];
+	if(isset($_SESSION['inloggen'])){
+		$email = $_SESSION['inloggen']['email'];
+		$paswoord = $_SESSION['inloggen']['paswoord'];
 	}
 ?>
 
@@ -28,7 +28,7 @@
 		<input id="paswoord" type="password" name="<?=$paswoord?>">
 	</br>
 	</br>
-		<input type="submit" name="submit" value="Submit">
+		<input type="submit" name="inloggen" value="Submit">
 	</form>
 	<p>Nog geen account? Maak er dan eentje aan op de <a href="registratie-form.php">registratiepagina</a></p>
 </body>

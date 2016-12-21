@@ -1,4 +1,6 @@
 <?php
+
+
 	//controlleer of een file is geupload en voldoet aan bepaalde voorwaarden
  	$name = $_FILES['file']['name'];
 
