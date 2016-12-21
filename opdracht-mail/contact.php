@@ -4,22 +4,6 @@
 	//of alles geset is
 	//$fout = $_SESSION['error'];
 
-
-	$admin = "marzone.ap@gmail.com";
-
-	$mysql_host='localhost';
-	$mysql_user='root';
-	$mysql_pass='root';
-
-	$mysql_db = 'database_email';
-
-	if(!mysql_connect($mysql_host,$mysql_user,$mysql_pass) || !mysql_select_db($mysql_db)){
-		//if it doesn't connect successfully
-		die(mysql_error());
-	}else{
-		echo 'connected';
-	}
-
 	if (isset($_POST['submit'])) 
 	{
 
@@ -29,6 +13,37 @@
 		$headers 		= 	'From: '. $email;
 
 		mail( $email, $boodschap, $headers );
+		
+		$admin = "marzone.ap@gmail.com";
+
+
+			if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+				try{
+					$db = new PDO('mysql:host=localhost;dbname=opdracht-contact', 'root', 'root', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)); // Connectie maken
+				}catch(PDOException $e){
+					$messageContainer = 'Er ging iets mis: ' . $e->getMessage();
+				}
+
+
+				$insert = "INSERT INTO contact_messages(email,message)
+							VALUES(:email,:boodschap)";
+
+				$statement= $db->prepare($insert);
+				$statement->bindValue(':email',$email);
+				$statement->bindValue(':boodschap',$boodschap);
+				$exec=$statement->execute();
+
+				if(isset($_POST['kopie'])){
+					$_SESSION['kopie']=true;
+				}
+
+				if(isset($_SESSION['kopie'])){
+					//email sturen naar eigen email ook
+				}
+
+			}
+			
+
 
 	}
 

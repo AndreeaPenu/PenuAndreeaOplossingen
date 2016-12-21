@@ -1,6 +1,19 @@
 <?php
 
 	session_start();
+
+
+
+
+
+
+	
+
+	
+
+
+
+	//fouten in session var
 	//$fout = $_SESSION['error'];
 	$email = $_SESSION['email'];
 	$boodschap = $_SESSION['boodschap'];
@@ -15,23 +28,25 @@
 <body>
 
 
-	<form aciton="contact.php" action="POST" id="contactform">
+	<form aciton="contact.php" method="POST" id="contactform">
 		<label for="email">E-mailadres</label>
 		</br>
-		<input type="text" name="email">
+		<input id="email" type="text" name="email" value="<?=$email?>">
 		</br>
 		<label for="boodschap">Boodschap</label>
 		</br>
-		<textarea rows="8" cols="30" name="boodschap"></textarea>
+		<textarea rows="8" cols="30" id="boodschap" name="boodschap" value="<?=$boodschap?>"></textarea>
 		</br>
 		<input for="kopie" type="checkbox">
-		<label name="kopie">Stuur een kopie naar mijzelf</label>
+		<label id="kopie" name="kopie">Stuur een kopie naar mijzelf</label>
 		</br>
 		<input type="submit" name="submit" value="Submit Query">
 	</form>
 
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script>
 
 		//ready method
