@@ -47,7 +47,7 @@ class ArticleController extends Controller
        $user=Auth::user();
 
        $user->articles()->create($input);
-       return redirect('/articles');
+       return redirect('/');
     }
 
     /**
@@ -88,9 +88,9 @@ class ArticleController extends Controller
         //
 
         $input = $request->all();
-        
 
-
+        Auth::user()->articles()->whereId($id)->first()->update($input);
+        return redirect('/');
     }
 
     /**
@@ -102,5 +102,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+        $article = Article::findOrFail($id)->delete();
+        return redirect('/');
     }
 }

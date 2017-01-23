@@ -16,7 +16,16 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit article</div>
+                    <div class="panel-heading">Edit article {!! Form::open(['method' => 'DELETE', 'action'=> ['ArticleController@destroy', $article->id]]) !!}
+
+
+                        <div class="form-group">
+                            {!! Form::submit('delete article', ['class'=>'btn btn-danger']) !!}
+                        </div>
+                        {!! Form::close() !!}
+
+
+                    </div>
 
                     <div class="panel-content">
 
