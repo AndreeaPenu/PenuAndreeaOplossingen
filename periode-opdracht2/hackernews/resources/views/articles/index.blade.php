@@ -45,7 +45,7 @@
                                             <a href="{{route('articles.edit', $article->id)}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
                                         </div>
                                         <div class="info">
-                                            0 points   |   posted by  {{$article->user->name}}   | <a href="#">0 comments</a>
+                                            0 points   |   posted by  {{$article->user->name}}   | <a href="{{route('comments.show', $article->id)}}">0 comments</a>
                                         </div>
                                     </li>
                                     @endforeach

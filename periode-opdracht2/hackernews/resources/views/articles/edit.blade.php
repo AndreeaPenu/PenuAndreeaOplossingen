@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit article {!! Form::open(['method' => 'DELETE', 'action'=> ['ArticleController@destroy', $article->id]]) !!}
+                    <div class="panel-heading"> Edit comment {!! Form::open(['method' => 'DELETE', 'action'=> ['ArticleController@destroy', $article->id]]) !!}
 
 
                         <div class="form-group">

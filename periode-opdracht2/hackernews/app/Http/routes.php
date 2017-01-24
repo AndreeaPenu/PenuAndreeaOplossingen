@@ -17,4 +17,9 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+
 Route::resource('/articles', 'ArticleController');
+
+Route::resource('/comments', 'CommentsController');
+
+
