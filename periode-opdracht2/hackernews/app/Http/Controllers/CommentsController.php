@@ -19,10 +19,10 @@ class CommentsController extends Controller
     public function index()
     {
         //
-        $comments = Comment::all();
+       /* $comments = Comment::all();
 
 
-        return view('comments.index', compact('comments'));
+        return view('comments.show', compact('comments'));*/
 
 
     }
@@ -53,8 +53,8 @@ class CommentsController extends Controller
             'body'=>$request->body
         ];
 
-        Comment::create($request->all());
-        //Comment::create($data);
+        //Comment::create($request->all());
+        Comment::create($data);
         return redirect('/');
     }
 
@@ -71,7 +71,10 @@ class CommentsController extends Controller
 
         $article = Article::findOrFail($id);
         $comments = $article->comments;
-        return view('comments.show', compact('comments'));
+
+
+        $comment = Comment::findOrFail($id);
+        return view('comments.show', compact('comments','comment'));
     }
 
     /**

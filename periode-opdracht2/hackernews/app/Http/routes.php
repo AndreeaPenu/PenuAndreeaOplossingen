@@ -15,11 +15,15 @@ Route::get('/', 'HomeController@index');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'ArticleController@index');
+/*Route::get('/comments/{id}', ['as'=> 'article.id', 'uses'=>'CommentsController@index']);*/
+
+
 
 
 Route::resource('/articles', 'ArticleController');
 
 Route::resource('/comments', 'CommentsController');
+
 
 

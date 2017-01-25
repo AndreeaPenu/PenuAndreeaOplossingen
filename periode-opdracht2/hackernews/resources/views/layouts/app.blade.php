@@ -153,9 +153,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
-
+                    @if (Auth::check())
                     <li><a href="{{ url('/articles/create') }}">Add article</a></li>
-                    <li><a href="#">Instructies</a></li>
+                    @endif
+                        <li><a href="#">Instructies</a></li>
                 </ul>
 
 

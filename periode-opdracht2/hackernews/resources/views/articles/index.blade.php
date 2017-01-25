@@ -42,10 +42,17 @@
                                         </div>
                                         <div class="url">
                                             <a href="{{$article->url}}" class="urlTitle"> {{$article->title}}</a>
-                                            <a href="{{route('articles.edit', $article->id)}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                                            @if (Auth::check())
+                                            @if($article->user->id == Auth::user()->id)
+                                                <a href="{{route('articles.edit', $article->id)}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+
+                                            @endif
+                                                @endif
+
+
                                         </div>
                                         <div class="info">
-                                            0 points   |   posted by  {{$article->user->name}}   | <a href="{{route('comments.show', $article->id)}}">0 comments</a>
+                                             points   |   posted by  {{$article->user->name}}   | <a href="{{route('comments.show', $article->id)}}"> {{count($article->comments)}} comments</a>
                                         </div>
                                     </li>
                                     @endforeach

@@ -10,7 +10,7 @@
 
                 <div class="breadcrumb">
 
-                    <a href="#">← back to overview</a>
+                    <a href="/">← back to overview</a>
 
                 </div>
 
@@ -20,7 +20,15 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                       {{-- Article: {{$comment->article->title}}--}}
+                        Article: {{$comment->article->title}}
+
+                        {!! Form::open(['method' => 'DELETE', 'action'=> ['ArticleController@destroy', $comment->article->id]]) !!}
+
+
+                        <div class="form-group">
+                            {!! Form::submit('delete article', ['class'=>'btn btn-danger']) !!}
+                        </div>
+                        {!! Form::close() !!}
 
                     </div>
 
@@ -63,10 +71,10 @@
 
                         <div class="url">
 
-                            <a href="{{--{{$comment->article->url}}--}}" class="urlTitle">{{--{{$comment->article->title}}--}}</a>
+                            <a href="{{$comment->article->url}}" class="urlTitle">{{$comment->article->title}}</a>
                         </div>
                         <div class="info">
-                            4 points  | posted by {{--{{$comment->article->user->name}}--}} | 5 comments
+                             points  | posted by {{$comment->article->user->name}} | {{count($comment->article_id)}} comments
                         </div>
 
                         <div class="comments">
@@ -74,6 +82,7 @@
 
                             <ul>
 
+                                @if($comments)
                                 @foreach($comments as $comment )
                                     <li>
 
@@ -83,27 +92,32 @@
 
                                         <div class="comment-info">
                                             Posted by {{$comment->author}} on {{$comment->created_at}}
-
-
+                                            @if (Auth::check())
+                                            @if($comment->author == Auth::user()->name)
                                             {!! Form::open(['method'=>'DELETE', 'action' => ['CommentsController@destroy', $comment->id]]) !!}
                                             <div class="form-group">
                                                 {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-xs']) !!}
                                             </div>
                                             {!! Form::close() !!}
-
                                             <a href="{{route('comments.edit', $comment->id)}}" class ="btn btn-primary btn-xs edit-btn">edit</a>
+                                            @endif
+                                                @endif
                                         </div>
                                     </li>
 
                                 @endforeach
+                                @endif
+
 
 
                             </ul>
                         </div>
 
+                        @if (Auth::check())
+
                         {!! Form::open(['method'=>'POST','action'=>'CommentsController@store']) !!}
 
-                        <input type="hidden" name="article_id" value="{{--{{$comment->article->id}}--}}">
+                        <input type="hidden" name="article_id" value="{{$comment->article->id}}">
 
                         <div class="form-group">
                             {!! Form::label('body', 'Comment:') !!}
@@ -115,6 +129,9 @@
                         </div>
                         {!! Form::close() !!}
 
+                        @else
+                            <p>You need to be <a href="/login">logged in</a> to comment </p>
+                        @endif
 
                     </div>
 

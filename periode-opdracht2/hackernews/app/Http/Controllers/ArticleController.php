@@ -20,6 +20,7 @@ class ArticleController extends Controller
     {
         //
         $articles = Article::all();
+
         return view('articles.index', compact('articles'));
     }
 
@@ -44,10 +45,10 @@ class ArticleController extends Controller
     {
         //
         $input = $request->all();
-       $user=Auth::user();
+        $user=Auth::user();
 
-       $user->articles()->create($input);
-       return redirect('/');
+        $user->articles()->create($input);
+        return redirect('/');
     }
 
     /**
