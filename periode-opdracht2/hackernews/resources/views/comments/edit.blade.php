@@ -22,6 +22,7 @@
 
 
                 <!-- Display Validation Errors -->
+            @include('includes.form_error')
                 <!-- resources/views/common/errors.blade.php -->
 
 

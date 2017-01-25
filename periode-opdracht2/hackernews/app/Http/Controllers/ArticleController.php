@@ -44,6 +44,7 @@ class ArticleController extends Controller
     public function store(ArticlesCreateRequest $request)
     {
         //
+        $this->validate($request, Article::$rules);
         $input = $request->all();
         $user=Auth::user();
 
@@ -71,6 +72,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         //
+
         $article = Article::findOrFail($id);
         return view('articles.edit', compact('article'));
 
@@ -88,6 +90,7 @@ class ArticleController extends Controller
     {
         //
 
+        $this->validate($request, Article::$rules);
         $input = $request->all();
 
         Auth::user()->articles()->whereId($id)->first()->update($input);

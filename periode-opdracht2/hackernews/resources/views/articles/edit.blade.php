@@ -7,6 +7,7 @@
             <div class="col-md-10 col-md-offset-1">
 
                 <!-- Display Validation Errors -->
+                @include('includes.form_error')
                 <!-- resources/views/common/errors.blade.php -->
 
 
@@ -61,4 +62,6 @@
     </div>--}}
 
     @endif
+
+
 @endsection

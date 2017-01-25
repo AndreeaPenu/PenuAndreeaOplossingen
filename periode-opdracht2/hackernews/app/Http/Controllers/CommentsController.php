@@ -46,6 +46,8 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request, Comment::$rules);
         $user = Auth::user();
         $data = [
           'article_id' => $request->article_id,
@@ -101,6 +103,7 @@ class CommentsController extends Controller
     {
         //
 
+        $this->validate($request, Comment::$rules);
         Comment::findOrFail($id)->update($request->all());
         return redirect('/');
     }

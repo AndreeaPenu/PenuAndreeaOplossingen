@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ArticlesCreateRequest extends Request
+class CommentsCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,7 @@ class ArticlesCreateRequest extends Request
     {
         return [
             //
-            'title'=>'required',
-            'url'=>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
+            'body' => 'required'
 
         ];
     }

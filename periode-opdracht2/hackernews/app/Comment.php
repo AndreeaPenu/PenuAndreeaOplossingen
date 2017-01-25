@@ -18,4 +18,8 @@ class Comment extends Model
     public function article(){
         return $this->belongsTo('App\Article');
     }
+
+    public static $rules = [
+        'body'=>'required'
+    ];
 }
