@@ -19,10 +19,10 @@ class CommentsController extends Controller
     public function index()
     {
         //
-       /* $comments = Comment::all();
+        $comments = Comment::all();
 
 
-        return view('comments.show', compact('comments'));*/
+        return view('comments.show', compact('comments'));
 
 
     }
